@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { MapPin, ArrowRight, UtensilsCrossed, Store } from 'lucide-react';
 
 interface Restaurant {
@@ -18,7 +18,7 @@ const backgrounds = [
     'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800',
 ];
 
-const container = {
+const container: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -26,7 +26,7 @@ const container = {
     },
 };
 
-const card = {
+const card: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
 };

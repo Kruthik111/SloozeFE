@@ -4,7 +4,7 @@ import { useEffect, useState, use } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { ArrowLeft, Plus, Minus, ShoppingBag, ArrowRight, UtensilsCrossed, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -23,7 +23,7 @@ interface Restaurant {
     menuItems: MenuItem[];
 }
 
-const container = {
+const container: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -31,7 +31,7 @@ const container = {
     },
 };
 
-const card = {
+const card: Variants = {
     hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
 };
