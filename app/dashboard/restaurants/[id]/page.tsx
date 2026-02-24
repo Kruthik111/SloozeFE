@@ -8,6 +8,8 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { ArrowLeft, Plus, Minus, ShoppingBag, ArrowRight, UtensilsCrossed, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 interface MenuItem {
     id: number;
     name: string;
@@ -47,7 +49,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
 
     useEffect(() => {
         if (token && id) {
-            fetch(`http://localhost:4000/restaurants/${id}`, {
+            fetch(`${API_BASE}/restaurants/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
                 .then((res) => {

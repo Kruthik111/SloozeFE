@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import { Check, Clock, XCircle, CreditCard, ClipboardList, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 interface OrderItem {
     id: number;
     quantity: number;
@@ -46,7 +48,7 @@ export default function OrdersPage() {
     useEffect(() => {
         if (token) {
             setIsLoading(true);
-            fetch('http://localhost:4000/orders', {
+            fetch(`${API_BASE}/orders`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
                 .then((res) => {
@@ -70,7 +72,7 @@ export default function OrdersPage() {
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         try {
-            const res = await fetch(`http://localhost:4000/orders/${orderId}/pay`, {
+            const res = await fetch(`${API_BASE}/orders/${orderId}/pay`, {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -90,7 +92,7 @@ export default function OrdersPage() {
 
     const handleCancel = async (orderId: number) => {
         try {
-            const res = await fetch(`http://localhost:4000/orders/${orderId}/cancel`, {
+            const res = await fetch(`${API_BASE}/orders/${orderId}/cancel`, {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${token}` },
             });

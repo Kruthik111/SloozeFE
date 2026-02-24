@@ -8,6 +8,8 @@ import { Trash2, ArrowRight, ShoppingBag, Loader2, UtensilsCrossed, ShieldAlert 
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 export default function CartPage() {
     const { items, removeFromCart, clearCart, total } = useCartContext();
     const { token, user } = useAuth();
@@ -38,7 +40,7 @@ export default function CartPage() {
         }));
 
         try {
-            const res = await fetch('http://localhost:4000/orders', {
+            const res = await fetch(`${API_BASE}/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -12,6 +12,8 @@ interface Restaurant {
     country: string;
 }
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 const backgrounds = [
     'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800',
     'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800',
@@ -38,7 +40,7 @@ export default function RestaurantsPage() {
 
     useEffect(() => {
         if (token) {
-            fetch('http://localhost:4000/restaurants', {
+            fetch(`${API_BASE}/restaurants`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
                 .then((res) => {
