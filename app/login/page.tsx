@@ -13,6 +13,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showServerNotice, setShowServerNotice] = useState(true);
     const { login } = useAuth();
     const router = useRouter();
 
@@ -118,6 +119,22 @@ export default function LoginPage() {
                                     required
                                 />
                             </div>
+
+                            {showServerNotice && (
+                                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 leading-relaxed flex items-start gap-2">
+                                    <p className="flex-1">
+                                        If the login keeps loading, please try one more time. This project uses a free tier backend, and the server may need up to a minute to spin up after 15 minutes of inactivity.
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowServerNotice(false)}
+                                        className="text-amber-700 hover:text-amber-900 text-sm font-semibold leading-none"
+                                        aria-label="Close server notice"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            )}
 
                             <button
                                 type="submit"
